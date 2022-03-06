@@ -1,0 +1,81 @@
+import java.util.EmptyStackException;
+
+public class LinkedStack<T> implements StackInterface{
+
+    private Node topNode;
+
+    private class Node {
+        private T data; //stores one  object
+        private Node next; 
+        //points to the "next" node.  initially points to null.  each time 1 element is added to the bag, a new Node is created to store the new element.
+        //this new node becomes the new "head" or first node in the chain.  The @next of this new node points to the previous "head", extending the chain
+
+        private Node(T data){//constructor for a node
+            this(data, null);//constructor within a constructor (see next constructor)
+        }
+
+        private Node(T data, Node next){//constructor for a node that sets data and next simultaneously (this is odd but the class notes write it this way)
+            this.data = data;
+            this.next = next;
+        }
+
+        private T getData(){//returns the item stored in this node
+            return data;
+        }
+
+        private void setData(T newData){//replaces the item stored in this node
+            data = newData;
+        }
+
+        private Node getNextNode(){//returns the address of the next node
+            return next;
+        }
+
+        private void setNextNode(Node nextNode){//sets the address of the next node
+            next = nextNode;
+        }
+    }
+
+    public LinkedStack(){
+        topNode = null;
+    }
+
+    @Override
+    public void push(T newEntry) {
+        Node newNode = new Node(newEntry, topNode);
+        topNode = newNode;
+    }
+
+    @Override
+    public T pop() {
+        T top = peek();
+        topNode = topNode.getNextNode();
+
+        return top;
+    }
+
+    @Override
+    public T peek() {
+        if (isEmpty())
+            throw new EmptyStackException();
+        else    
+            return topNode.getData();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if (topNode == null)
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public void clear() {
+        topNode = null;
+    }
+
+    public T convertToPostfix(T anEntry){
+
+    }
+}

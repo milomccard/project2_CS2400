@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
-public class ResizableArrayStack<T> implements StackInterface{
+public class ResizableArrayStack<T> implements StackInterface<T>{
 
     private T[] stack;
     private int topIndex;
@@ -13,11 +13,11 @@ public class ResizableArrayStack<T> implements StackInterface{
         this(DEFAULT_CAPACITY);
     }
 
-    public ResiableArrayStack(int initialCapacity){
+    public ResizableArrayStack(int initialCapacity){
         integrityOK = false;
-        checkCapacity(initialCapacity);
+        checkCapacity();
 
-        @SupressWarnings("unchecked");
+        @SuppressWarnings("unchecked")
         T[] tempStack = (T[])new Object[initialCapacity];
         stack = tempStack;
         topIndex = -1;
@@ -35,7 +35,7 @@ public class ResizableArrayStack<T> implements StackInterface{
     private void ensureCapacity(){
         if (topIndex >= stack.length - 1){
             int newLength = 2 * stack.length;
-            checkCapacity(newLength);
+            checkCapacity();
             stack = Arrays.copyOf(stack, newLength);
         }
     }
@@ -87,6 +87,21 @@ public class ResizableArrayStack<T> implements StackInterface{
             throw new ArrayIndexOutOfBoundsException("Array capacity has exceeded maximum capacity.");
     }
 
-    public T evaluatePostfix(T anEntryT){}
+    public T evaluatePostfix(T anEntryT){
+        return null;
+    }
+
+    /************************* Helpers **********************/
+    private boolean doubleCapacity(){
+        if(topIndex < (MAX_CAPACITY/2)){
+            int newCapacity = 2 * (topIndex+1);
+            stack = Arrays.copyOf(stack, newCapacity);
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
 
 }

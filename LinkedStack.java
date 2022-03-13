@@ -1,6 +1,6 @@
 import java.util.EmptyStackException;
 
-public class LinkedStack<T> implements StackInterface{
+public class LinkedStack<T> implements StackInterface<T>{
 
     private Node topNode;
 
@@ -40,11 +40,14 @@ public class LinkedStack<T> implements StackInterface{
         topNode = null;
     }
 
+
+    
     @Override
     public void push(T newEntry) {
         Node newNode = new Node(newEntry, topNode);
         topNode = newNode;
     }
+    
 
     @Override
     public T pop() {
@@ -75,7 +78,7 @@ public class LinkedStack<T> implements StackInterface{
         topNode = null;
     }
 
-    public T convertToPostfix(T anEntry){
+    
 
-    }
 }
+

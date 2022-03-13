@@ -69,5 +69,62 @@ public class Caculator {
                 return -1;
         }
     }
-    
+
+    static double Calculate(String postfix){
+
+        LinkedStack<Double> stack = new LinkedStack<>();
+
+        for(int i = 0; i < postfix.length(); i++){
+            char ch = postfix.charAt(i);
+
+            if(Character.isLetter(ch))
+                switch(ch){
+                    case 'A':
+                        stack.push((double)2);
+                        break;
+                    case 'B':
+                        stack.push((double)3);
+                        break;
+                    case 'C':
+                        stack.push((double)4);
+                        break;
+                    case 'D':
+                        stack.push((double)5);
+                        break;
+                    case 'E':
+                        stack.push((double)6);
+                        break;
+                    default:
+                        break;
+                }
+            else{
+                double x = stack.pop();
+                double y = stack.pop();
+                switch(ch){
+                    case '+':
+                        stack.push(y+x);
+                        break;
+                    case '-':
+                        stack.push(y-x);
+                        break;
+                    case '*':
+                        stack.push(y*x);
+                        break;
+                    case '/':
+                        stack.push(y/x);
+                        break;
+                    case '^':
+                        stack.push(Math.pow(y, x));
+                        break;
+
+                    }
+                }
+                
+
+    }
+
+    return stack.pop();
+
+}
+
 }

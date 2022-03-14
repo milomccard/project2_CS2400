@@ -1,14 +1,28 @@
-public class Caculator {
-
+/**
+ * A driver class to show our convertToPostFix and evaluatePostFix methods
+ * They each use stacks to solve the problems of converting from infix to postfix
+ * and to then evaluate the converted postfix expression
+ * The convert method makes use of a linked stack
+ * The evaluate method makes use of a resizable array stack
+ */
+public class Calculator {
     public static void main(String args[]){
-        LinkedStack<String> tester = new LinkedStack<String>();
+        //LinkedStack<String> tester = new LinkedStack<String>();
 
-        String input = "a*(1+2^2)";
-        System.out.println("\nInfix Expression: " + input);
+        //String input = "a*(1+2^2)";
+        //System.out.println("\nInfix Expression: " + input);
         
-        System.out.print("Postfix Expression: ");
-        System.out.println(convertToPostfix(input));
+        //System.out.print("Postfix Expression: ");
+        //System.out.println(convertToPostfix(input));**/
         
+        String inFixString = "A*B/(C-A)+D*E";
+        System.out.println("To demonstrate our linked and resizable array stacks we will convert an infix expression to postfix and evaluate it.");
+        System.out.println("We will now pass our infix string to our infix to postfix converter.");
+        String postFix = convertToPostfix(inFixString);
+
+        System.out.println("Now the string expression that was originally " + inFixString + " is now " + postFix + ".");
+        System.out.println("Now we will evaluate the postfix version of the expression assuming all the values are equal to what task 4 stated in the project description.");
+        System.out.println("The value of the postfix expression is " + evaluatePostfix(postFix) + ".");
         
     }
 
@@ -56,7 +70,7 @@ public class Caculator {
 
     }
 
-    //a quick helper utility to define the precedence of terms.
+    /***********A helper method to provide utility to the convert method********/
     static int Precedence(char x){
         switch(x){
             case '+': case '-':
@@ -69,10 +83,12 @@ public class Caculator {
                 return -1;
         }
     }
+/*************EvaluatePostFix method
+ *************Receives a string in postFix form and evaluates it based on the values
+ *************that the project description listed************/
+    static double evaluatePostfix(String postfix){
 
-    static double Calculate(String postfix){
-
-        LinkedStack<Double> stack = new LinkedStack<>();
+        ResizableArrayStack<Double> stack = new ResizableArrayStack<>();
 
         for(int i = 0; i < postfix.length(); i++){
             char ch = postfix.charAt(i);
@@ -116,15 +132,11 @@ public class Caculator {
                     case '^':
                         stack.push(Math.pow(y, x));
                         break;
-
                     }
                 }
-                
-
     }
-
     return stack.pop();
-
+}
 }
 
 }

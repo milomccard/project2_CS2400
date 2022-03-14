@@ -7,25 +7,28 @@
  */
 public class Calculator {
     public static void main(String args[]){
-        //LinkedStack<String> tester = new LinkedStack<String>();
-
-        //String input = "a*(1+2^2)";
-        //System.out.println("\nInfix Expression: " + input);
         
-        //System.out.print("Postfix Expression: ");
-        //System.out.println(convertToPostfix(input));**/
-        
+        /**
+         * This block tests the implementations convertToPostfix(String) and evaluatePostfix(String)
+         */
         String inFixString = "A*B/(C-A)+D*E";
+        System.out.println("\n************* DEMO *************\n\n");
         System.out.println("To demonstrate our linked and resizable array stacks we will convert an infix expression to postfix and evaluate it.");
-        System.out.println("We will now pass our infix string to our infix to postfix converter.");
+        System.out.println("\n\tInfix expression: " + inFixString);
+        System.out.println("\n(Task 2) We will now pass our infix string to our infix to postfix converter.");
         String postFix = convertToPostfix(inFixString);
-
-        System.out.println("Now the string expression that was originally " + inFixString + " is now " + postFix + ".");
-        System.out.println("Now we will evaluate the postfix version of the expression assuming all the values are equal to what task 4 stated in the project description.");
-        System.out.println("The value of the postfix expression is " + evaluatePostfix(postFix) + ".");
+        System.out.println("\n\tPostfix Expression: " + postFix);
+        System.out.println("\n(Task 5) Now we will evaluate the postfix expression assuming all the values are equal to what task 4 stated in the project description.");
+        System.out.println("\n\tThe value of the postfix expression is: " + evaluatePostfix(postFix));
+        System.out.println("\n\n");
         
     }
 
+    /**
+     * Converts an infix expression to postfix expression
+     * @param anEntry an infix expression represented as a String 
+     * @return a postfix expression represented as a String
+     */
     static String convertToPostfix(String anEntry){
         String output = "";//the Postfix expression that will be returned
 
@@ -70,7 +73,11 @@ public class Calculator {
 
     }
 
-    /***********A helper method to provide utility to the convert method********/
+    /**
+     * Helper method for determining precedence of operands.
+     * @param x the operand
+     * @return the precidence of the operand
+     */
     static int Precedence(char x){
         switch(x){
             case '+': case '-':
@@ -83,9 +90,12 @@ public class Calculator {
                 return -1;
         }
     }
-/*************EvaluatePostFix method
- *************Receives a string in postFix form and evaluates it based on the values
- *************that the project description listed************/
+    
+    /**
+     * Evaluate a postfix expression with pre-defined variable values 'A' - 'E'
+     * @param postfix a postfix expression
+     * @return the numerical value of the evaluated expression
+     */
     static double evaluatePostfix(String postfix){
 
         ResizableArrayStack<Double> stack = new ResizableArrayStack<>();
@@ -134,9 +144,7 @@ public class Calculator {
                         break;
                     }
                 }
-    }
+        }
     return stack.pop();
-}
-}
-
+    }
 }

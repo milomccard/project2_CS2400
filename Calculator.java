@@ -97,12 +97,14 @@ public class Calculator {
      * @return the numerical value of the evaluated expression
      */
     static double evaluatePostfix(String postfix){
-
+        // This stack will hold the intermediary answers
         ResizableArrayStack<Double> stack = new ResizableArrayStack<>();
 
         for(int i = 0; i < postfix.length(); i++){
+            // to parse the string that we pass in
             char ch = postfix.charAt(i);
 
+            // 
             if(Character.isLetter(ch))
                 switch(ch){
                     case 'A':

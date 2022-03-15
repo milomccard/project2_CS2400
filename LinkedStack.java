@@ -4,6 +4,9 @@ public class LinkedStack<T> implements StackInterface<T>{
 
     private Node topNode;
 
+    /**
+     * Node class for implementing a linked list
+     */
     private class Node {
         private T data; //stores one  object
         private Node next; 
@@ -36,12 +39,17 @@ public class LinkedStack<T> implements StackInterface<T>{
         }
     }
 
+    /**
+     * Constructor of an empty stack
+     */
     public LinkedStack(){
         topNode = null;
     }
 
-
-    
+    /**
+     * Puts a new object on top of the stack
+     * @param newEntry the object to be pushed
+     */
     @Override
     public void push(T newEntry) {
         Node newNode = new Node(newEntry, topNode);
@@ -49,6 +57,10 @@ public class LinkedStack<T> implements StackInterface<T>{
     }
     
 
+    /**
+     * Removes the top object of the stack and returns it
+     * @return the object removed
+     */
     @Override
     public T pop() {
         T top = peek();
@@ -57,6 +69,10 @@ public class LinkedStack<T> implements StackInterface<T>{
         return top;
     }
 
+    /**
+     * Returns the object on top of the stack without removing it
+     * @return the object on top of the stack
+     */
     @Override
     public T peek() {
         if (isEmpty())
@@ -65,6 +81,10 @@ public class LinkedStack<T> implements StackInterface<T>{
             return topNode.getData();
     }
 
+    /**
+     * checks if the stack is empty
+     * @return returns true if stack is empty
+     */
     @Override
     public boolean isEmpty() {
         if (topNode == null)
@@ -73,12 +93,11 @@ public class LinkedStack<T> implements StackInterface<T>{
             return false;
     }
 
+    /**
+     * Empties the stack of all elements
+     */
     @Override
     public void clear() {
         topNode = null;
     }
-
-    
-
 }
-
